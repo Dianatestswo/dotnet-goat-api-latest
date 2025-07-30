@@ -122,7 +122,8 @@ public class GoatsController : ControllerBase
 
         connection.Open();
 
-        using var command = new SqlCommand($"SELECT * FROM Customers WHERE Id={id}", connection);
+        using var command = new SqlCommand("SELECT * FROM Customers WHERE Id=@id", connection);
+        command.Parameters.AddWithValue("@id", id);
 
         using var reader = command.ExecuteReader();
         while (reader.Read())
