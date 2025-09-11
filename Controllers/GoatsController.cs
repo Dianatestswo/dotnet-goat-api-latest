@@ -118,7 +118,8 @@ public class GoatsController : ControllerBase
 
         // var id = Request.Query["id"];
 
-        _logger.LogInformation($"GetCustomers called with id {id}");
+        var sanitizedId = id?.Replace("\r", "").Replace("\n", "");
+        _logger.LogInformation($"GetCustomers called with id {sanitizedId}");
 
         connection.Open();
 
